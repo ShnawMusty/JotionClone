@@ -25,7 +25,6 @@ const Banner = ({documentId}: BannerProps) => {
   const handleRemove = () => {
     if (document?.coverImage) {
       deleteCoverById({
-        storageId: document?.coverImage as Id<'_storage'>,
         documentId
       })
     };
