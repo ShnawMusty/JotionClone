@@ -1,0 +1,54 @@
+import { ThemeProvider } from "@/components/providers/themeProvider";
+import "./globals.css";
+import type { Metadata } from "next";
+import { ConvexClientProvider } from "@/components/providers/convexProvider";
+import { Toaster } from "sonner";
+import ModalProvider from "@/components/providers/ModalProvider";
+import { EdgeStoreProvider } from "@/lib/edgestore";
+
+export const metadata: Metadata = {
+  title: "Jotion",
+  description: "The connected workspace where better, faster work happens.",
+  icons: {
+    icon: [
+      {
+        media: "(prefers-color-scheme: light)",
+        url: "/logo.svg",
+        href: "/logo.svg",
+      },
+      {
+        media: "(prefers-color-scheme: dark)",
+        url: "/logo-dark.svg",
+        href: "/logo-dark.svg",
+      },
+    ],
+  },
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <body>
+        <ConvexClientProvider>
+          <EdgeStoreProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+            storageKey="jotion-theme"
+          >
+            <Toaster position="bottom-right"/>
+            <ModalProvider/>
+            {children}
+          </ThemeProvider>
+          </EdgeStoreProvider>
+        </ConvexClientProvider>
+      </body>
+    </html>
+  );
+}
