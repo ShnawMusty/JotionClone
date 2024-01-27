@@ -54,9 +54,9 @@ const DocumentIdPage = ({params}: DocumentIdPageProps) => {
     }
   
   return (
-    <div className="space-y-4">
+    <div>
       <Cover preview url={document.coverImage} documentId={document._id}/>
-      <div className="pl-20 p-4">
+      <div className="px-20 py-6 space-y-4">
       <Toolbar preview initialData={document} />
       <Editor editable={false} onChange={onChange} initialContent={document.content}/>
       </div>
